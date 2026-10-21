@@ -34,11 +34,10 @@ class VisualizationApp:
             return default
 
     def _create_repository(self) -> SharedWorkspaceRepository | None:
-        url = self._secret("SUPABASE_URL")
-        key = self._secret("SUPABASE_PUBLISHABLE_KEY")
-        if not url or not key:
+        token = self._secret("GITHUB_TOKEN")
+        if not token:
             return None
-        return SharedWorkspaceRepository(url, key)
+        return SharedWorkspaceRepository(token, "jyj25/261021", "main")
 
     @staticmethod
     def _option_index(options, selected) -> int:
@@ -53,7 +52,7 @@ class VisualizationApp:
         st.caption("공유 편집이 가능한 실험 데이터 분석 작업공간")
         st.warning(
             "이 작업공간은 공개 편집 공간입니다. 링크에 접근한 누구나 데이터를 교체하고 보고서와 분석 설정을 수정할 수 있습니다. "
-            "비공개·개인정보·기밀 실험 데이터는 올리지 마세요."
+            "업로드한 CSV는 공개 GitHub 저장소와 변경 기록에 커밋됩니다. 비공개·개인정보·기밀 실험 데이터는 올리지 마세요."
         )
         if self.repository is None:
             self._show_deployment_setup()
@@ -85,10 +84,11 @@ class VisualizationApp:
 
     @staticmethod
     def _show_deployment_setup() -> None:
-        st.error("클라우드 공유 저장소가 연결되지 않았습니다.")
+        st.error("GitHub 공유 저장소가 연결되지 않았습니다.")
         st.markdown(
-            "Streamlit 호스팅 비밀 설정에 `SUPABASE_URL`과 `SUPABASE_PUBLISHABLE_KEY`를 등록하고 "
-            "`infra/supabase.sql`을 Supabase 프로젝트에서 실행하세요. 앱은 로컬 서버 모드로 실행하지 않습니다."
+            "Streamlit 배포 설정의 Secrets에 저장소 `jyj25/261021`에만 접근할 수 있는 "
+            "`GITHUB_TOKEN`을 등록하세요. 앱은 GitHub 저장소의 공유 데이터 파일만 읽고 씁니다. "
+            "로컬 서버는 사용하지 않습니다."
         )
 
     def _show_upload_form(self, metadata: dict[str, Any]) -> None:

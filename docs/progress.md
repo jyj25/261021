@@ -4,7 +4,7 @@
 
 | 항목 | 값 |
 | --- | --- |
-| 단계 | 공유 편집 MVP 구현, 클라우드 설정 및 배포 대기 |
+| 단계 | GitHub 기반 공유 편집 구현, 토큰 설정 및 배포 대기 |
 | 버전 | 0.2.0 |
 | 미리보기 URL | 아직 없음 |
 | 실행 방식 | 원격 호스팅 전용, 로컬 서버 금지 |
@@ -13,20 +13,21 @@
 
 - CSV 정리 설정, 조건별 기술 통계와 그룹 그래프, IQR·Z 점수 이상치 후보.
 - 그래프 생성, 재현 가능한 Python 분석 코드 편집, Markdown 보고서 초안 편집.
-- 누구나 공용 CSV와 보고서·분석 코드를 수정하도록 Supabase 저장소 어댑터와 공개 정책 SQL.
+- 누구나 공용 CSV와 보고서·분석 코드를 수정하도록 GitHub Contents API 저장소 어댑터.
 - 사용자가 동의하면 집계 정보만 OpenAI API에 전달하는 AI 해석 초안.
 - 재사용 분석 및 보고서 규칙을 `.agents/skills/lab-data-reporting/SKILL.md`로 구성.
 
 ## 배포 전 필요한 작업
 
-- Supabase 프로젝트에서 `infra/supabase.sql` 실행.
-- Streamlit Community Cloud에 앱을 배포하고 `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY` 설정.
+- GitHub Fine-grained token을 `jyj25/261021` 한 저장소의 Contents 읽기·쓰기로 생성.
+- Streamlit Community Cloud에서 GitHub 로그인으로 앱을 배포하고 `GITHUB_TOKEN` Secret 설정.
 - AI 해석을 사용할 경우 `OPENAI_API_KEY` 설정과 비용 한도 적용.
 - 배포 주소에서 업로드 후 다른 방문자가 같은 자료와 보고서를 수정할 수 있는지 확인.
 
 ## 알려진 제한
 
 - 인증 없이 모두가 수정하는 공개 공간이며 마지막 저장이 이전 변경을 덮어쓸 수 있다.
+- 공개 GitHub 저장소에 CSV와 변경 이력이 남으므로 비공개·개인정보·기밀 자료를 게시하지 않는다.
 - 공개 게시된 자료에는 비공개·기밀 데이터를 사용하지 않는다.
 - 통계 비교는 기술 요약이며 자동 가설검정은 수행하지 않는다.
 - AI 결과는 연구자가 검토해야 하는 초안이다.

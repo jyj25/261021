@@ -16,7 +16,7 @@
   -> Streamlit Community Cloud / app.py
       -> lab_data.py: CSV 정리, 비교, 이상치, 재현 코드
       -> reporting.py: Markdown 초안 구성
-      -> shared_workspace.py: Supabase 공용 저장
+      -> shared_workspace.py: GitHub 저장소 공용 저장
       -> OpenAI Responses API: 동의 후 집계 기반 해석
 ```
 
@@ -33,7 +33,7 @@
 
 ## 3. 공유 저장
 
-Supabase Storage의 `lab-shared/workspace/experiment.csv`에 공용 CSV를 두고, `lab_workspace`의 `main` 행 JSONB에 보고서, 분석 코드, 설정을 저장한다. RLS 및 Storage 정책은 anon 역할의 읽기·쓰기·갱신·삭제를 허용한다. 누구든 동일한 작업공간을 편집하며 동시 수정은 마지막 저장이 덮어쓴다.
+GitHub Contents API로 `data/shared_experiment.csv`와 `data/shared_workspace.json`을 읽고 쓴다. Streamlit Secrets에 저장소 하나로 범위를 제한한 Fine-grained token을 보관한다. 앱 방문자는 로그인 없이 UI에서 데이터를 수정할 수 있으며 저장마다 Git commit이 생성된다. 공개 저장소이므로 업로드한 CSV와 이전 변경 내용이 공개 Git 기록에 남는다. 동시 저장이 충돌하면 새로고침 후 다시 저장하도록 안내한다. CSV 업로드는 10 MB까지 허용한다.
 
 ## 4. 분석 및 AI 경계
 
@@ -47,7 +47,7 @@ Supabase Storage의 `lab-shared/workspace/experiment.csv`에 공용 CSV를 두�
 ## 5. 배포
 
 - 웹 앱: Streamlit Community Cloud
-- 공유 데이터베이스 및 파일: Supabase
+- 공유 파일: GitHub 저장소 Contents API
 - 언어 모델: 선택 설정된 OpenAI API
-- 비밀값: 호스팅 플랫폼 Secrets에 보관
+- GitHub 쓰기 토큰과 선택적 AI 키: 호스팅 플랫폼 Secrets에 보관
 - 로컬 서버 제공 및 실행: 금지

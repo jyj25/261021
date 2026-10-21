@@ -7,16 +7,16 @@
 | T-01 | 실험 데이터 분석 범위 정의 | requirements.md | 완료 |
 | T-02 | 객체 구조와 공개 저장 설계 | design.md | 완료 |
 | T-03 | 정리, 비교, 이상치, 코드 생성 구현 | lab_data.py | 완료 |
-| T-04 | 공유 저장과 공개 편집 권한 구현 | shared_workspace.py, infra/supabase.sql | 완료 |
+| T-04 | GitHub 저장소 공유 저장과 공개 편집 구현 | shared_workspace.py | 완료 |
 | T-05 | AI 해석 및 보고서 초안 구현 | reporting.py, app.py | 완료 |
-| T-06 | Streamlit/Supabase 호스팅 배포 | 공개 HTTPS URL | 대기 |
+| T-06 | GitHub 계정으로 Streamlit 호스팅 배포 | 공개 HTTPS URL | 대기 |
 | T-07 | 호스팅 환경에서 공동 수정 및 AI 흐름 확인 | progress.md 증거 | 대기 |
 
 ## 다음 순서
 
-1. Supabase 프로젝트에서 `infra/supabase.sql`을 실행한다.
-2. GitHub 저장소를 Streamlit Community Cloud에 연결한다.
-3. 앱 Secrets에 Supabase URL과 publishable key를 등록한다.
+1. GitHub Fine-grained token을 만들고 `jyj25/261021` 저장소에만 `Contents: Read and write` 권한을 준다.
+2. GitHub 계정으로 Streamlit Community Cloud에 로그인하고 저장소, `main`, `app.py`를 연결한다.
+3. 앱 Secrets에 `GITHUB_TOKEN`을 등록한다.
 4. 필요할 때만 비용 한도가 설정된 OpenAI API 키를 추가한다.
 5. 공개 가능한 CSV로 게시·수정·보고서 공유와 AI 동의 흐름을 호스팅에서 점검한다.
 

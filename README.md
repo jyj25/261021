@@ -7,13 +7,12 @@
 이 프로젝트는 호스팅 환경에서만 실행합니다. 로컬 웹 서버를 만들거나 `localhost`로 실행하지 않습니다.
 
 1. GitHub 저장소 `jyj25/261021`에 프로젝트 파일이 있습니다.
-2. Supabase 프로젝트에서 `infra/supabase.sql`을 실행합니다.
-3. Streamlit Community Cloud에서 저장소 `jyj25/261021`, 브랜치 `main`, 진입 파일 `app.py`를 지정해 앱을 배포합니다.
-4. 배포 전에 Advanced settings의 Secrets에 다음 설정을 넣습니다.
+2. GitHub에서 Fine-grained personal access token을 만듭니다. Repository access는 `Only select repositories`로 두고 `jyj25/261021`만 선택합니다. Repository permissions에서 `Contents`를 `Read and write`로 설정합니다. 토큰은 배포 비밀 설정에만 입력합니다.
+3. Streamlit Community Cloud에 GitHub 계정으로 로그인하고 저장소 `jyj25/261021`, 브랜치 `main`, 진입 파일 `app.py`를 지정해 앱을 배포합니다.
+4. 배포 전 Advanced settings의 Secrets에 다음 설정을 넣습니다.
 
 ```toml
-SUPABASE_URL = "Supabase 프로젝트 URL"
-SUPABASE_PUBLISHABLE_KEY = "Supabase publishable key"
+GITHUB_TOKEN = "저장소 하나에만 권한을 준 Fine-grained token"
 OPENAI_API_KEY = "선택: OpenAI API key"
 OPENAI_MODEL = "gpt-5-mini"
 ```
@@ -25,7 +24,7 @@ GitHub의 수정 권한은 저장소 설정으로 별도 관리합니다. 공개
 
 ## 공유 편집과 데이터 취급
 
-이 앱은 로그인 없이 공용 Supabase 저장소를 사용합니다. 모든 방문자가 현재 CSV를 교체하고, 보고서와 분석 코드를 편집하고, 변경사항을 저장할 수 있습니다. 누구나 내용을 덮어쓰거나 지울 수 있으므로 기밀·개인정보·보존 의무가 있는 데이터를 넣지 마세요. 이 공개 권한은 `infra/supabase.sql`의 정책에 구현되어 있습니다.
+이 앱은 로그인 없이 GitHub 저장소에 있는 공용 CSV와 작업공간 파일을 사용합니다. 모든 방문자가 현재 CSV를 교체하고, 보고서와 분석 코드를 편집하고, 변경사항을 저장할 수 있습니다. 업로드 CSV와 수정 내용은 공개 저장소에 커밋되며 교체 전 자료도 Git 기록에 남습니다. 누구나 앱을 통해 공유 내용을 덮어쓸 수 있으므로 기밀·개인정보·보존 의무가 있는 데이터는 올리지 마세요. 토큰은 앱 서버의 Secrets에만 저장되며 방문자에게 전달되지 않습니다.
 
 AI 해석을 요청할 때 앱은 원본 행을 보내지 않고 집계 통계, 조건별 요약, 이상치 개수만 OpenAI API에 전송합니다. 전송 전 화면 동의를 받습니다. 외부 AI 호출에는 API 사용료가 발생할 수 있고, 공유 앱의 방문자 누구나 요청할 수 있으므로 비용 한도를 설정한 API 키만 연결하세요. AI 결과는 초안이며 연구자가 확인해야 합니다.
 
@@ -50,7 +49,6 @@ starter/
 ├─ reporting.py
 ├─ shared_workspace.py
 ├─ requirements.txt
-├─ infra/supabase.sql
 ├─ .agents/skills/lab-data-reporting/SKILL.md
 └─ docs/
    ├─ requirements.md

@@ -17,7 +17,8 @@
 
 ## 배포
 
-- 배포 플랫폼은 Streamlit Community Cloud, 공유 영속 저장은 Supabase를 사용합니다.
-- `infra/supabase.sql`에는 누구나 읽고 쓸 수 있는 정책이 포함됩니다. 이는 요구사항이므로 권한을 임의로 좁히지 않습니다.
+- 배포 플랫폼은 Streamlit Community Cloud, 공유 영속 저장은 GitHub Contents API를 사용합니다.
+- GitHub 토큰은 대상 저장소 하나로 범위를 제한하고 호스팅 Secrets에 보관합니다.
+- 공유 CSV와 작업공간 메타데이터는 `data/shared_experiment.csv`, `data/shared_workspace.json`에 저장합니다.
 - 공개 검토는 HTTPS 호스팅 URL에서만 수행합니다. 비밀값은 저장소에 넣지 않습니다.
 - 기능 변경 시 요구사항, 설계, 작업, 진행 현황 문서를 같이 갱신합니다.

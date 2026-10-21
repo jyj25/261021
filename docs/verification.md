@@ -5,8 +5,8 @@
 ## 사전 조건
 
 - GitHub의 배포 저장소에 `starter` 파일이 올라가 있다.
-- Supabase에서 `infra/supabase.sql`을 실행했다.
-- Streamlit Community Cloud Secrets에 `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`가 등록되어 있다.
+- GitHub Fine-grained token은 `jyj25/261021`에만 `Contents: Read and write` 권한이 있다.
+- Streamlit Community Cloud Secrets에 `GITHUB_TOKEN`이 등록되어 있다.
 - AI 기능을 점검할 경우에만 `OPENAI_API_KEY`와 비용 한도를 준비한다.
 - 아래 과정에는 공개 가능한 테스트용 CSV만 사용한다.
 
