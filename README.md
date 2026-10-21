@@ -6,12 +6,20 @@
 
 이 프로젝트는 호스팅 환경에서만 실행합니다. 로컬 웹 서버를 만들거나 `localhost`로 실행하지 않습니다.
 
-1. GitHub에 `starter` 폴더를 저장소로 올립니다.
+1. GitHub 저장소 `jyj25/261021`에 프로젝트 파일이 있습니다.
 2. Supabase 프로젝트에서 `infra/supabase.sql`을 실행합니다.
-3. Streamlit Community Cloud에서 GitHub 저장소와 `starter/app.py`를 지정해 앱을 배포합니다.
-4. Streamlit 앱의 Secrets에 `SUPABASE_URL`, `SUPABASE_ANON_KEY`를 등록합니다.
-5. AI 해석을 사용하려면 `OPENAI_API_KEY`를 Secrets에 추가합니다. `OPENAI_MODEL`은 선택 설정이며 기본값은 `gpt-5-mini`입니다.
-6. 배포된 HTTPS 주소를 공유합니다. 이 링크의 방문자는 작업공간 내용을 수정할 수 있습니다.
+3. Streamlit Community Cloud에서 저장소 `jyj25/261021`, 브랜치 `main`, 진입 파일 `app.py`를 지정해 앱을 배포합니다.
+4. 배포 전에 Advanced settings의 Secrets에 다음 설정을 넣습니다.
+
+```toml
+SUPABASE_URL = "Supabase 프로젝트 URL"
+SUPABASE_ANON_KEY = "Supabase anon key"
+OPENAI_API_KEY = "선택: OpenAI API key"
+OPENAI_MODEL = "gpt-5-mini"
+```
+
+`OPENAI_API_KEY`는 AI 해석을 사용할 때만 필요합니다. 실제 키는 GitHub 파일이나 채팅에 넣지 말고 Streamlit 배포 설정에만 입력합니다.
+5. 배포된 HTTPS 주소를 공유합니다. 이 링크의 방문자는 작업공간 내용을 수정할 수 있습니다.
 
 GitHub의 수정 권한은 저장소 설정으로 별도 관리합니다. 공개 기여자는 저장소를 포크해 수정본을 제안할 수 있습니다. 공유 앱은 공용 데이터, 분석 설정, 보고서 초안의 수정 권한을 모든 방문자에게 제공합니다.
 
