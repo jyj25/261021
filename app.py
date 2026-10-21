@@ -35,7 +35,7 @@ class VisualizationApp:
 
     def _create_repository(self) -> SharedWorkspaceRepository | None:
         url = self._secret("SUPABASE_URL")
-        key = self._secret("SUPABASE_ANON_KEY")
+        key = self._secret("SUPABASE_PUBLISHABLE_KEY")
         if not url or not key:
             return None
         return SharedWorkspaceRepository(url, key)
@@ -87,7 +87,7 @@ class VisualizationApp:
     def _show_deployment_setup() -> None:
         st.error("클라우드 공유 저장소가 연결되지 않았습니다.")
         st.markdown(
-            "Streamlit 호스팅 비밀 설정에 `SUPABASE_URL`과 `SUPABASE_ANON_KEY`를 등록하고 "
+            "Streamlit 호스팅 비밀 설정에 `SUPABASE_URL`과 `SUPABASE_PUBLISHABLE_KEY`를 등록하고 "
             "`infra/supabase.sql`을 Supabase 프로젝트에서 실행하세요. 앱은 로컬 서버 모드로 실행하지 않습니다."
         )
 

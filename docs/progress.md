@@ -20,7 +20,7 @@
 ## 배포 전 필요한 작업
 
 - Supabase 프로젝트에서 `infra/supabase.sql` 실행.
-- Streamlit Community Cloud에 앱을 배포하고 `SUPABASE_URL`, `SUPABASE_ANON_KEY` 설정.
+- Streamlit Community Cloud에 앱을 배포하고 `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY` 설정.
 - AI 해석을 사용할 경우 `OPENAI_API_KEY` 설정과 비용 한도 적용.
 - 배포 주소에서 업로드 후 다른 방문자가 같은 자료와 보고서를 수정할 수 있는지 확인.
 

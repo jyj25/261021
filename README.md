@@ -13,7 +13,7 @@
 
 ```toml
 SUPABASE_URL = "Supabase 프로젝트 URL"
-SUPABASE_ANON_KEY = "Supabase anon key"
+SUPABASE_PUBLISHABLE_KEY = "Supabase publishable key"
 OPENAI_API_KEY = "선택: OpenAI API key"
 OPENAI_MODEL = "gpt-5-mini"
 ```

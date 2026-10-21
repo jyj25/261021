@@ -16,7 +16,7 @@
 
 1. Supabase 프로젝트에서 `infra/supabase.sql`을 실행한다.
 2. GitHub 저장소를 Streamlit Community Cloud에 연결한다.
-3. 앱 Secrets에 Supabase URL과 anon key를 등록한다.
+3. 앱 Secrets에 Supabase URL과 publishable key를 등록한다.
 4. 필요할 때만 비용 한도가 설정된 OpenAI API 키를 추가한다.
 5. 공개 가능한 CSV로 게시·수정·보고서 공유와 AI 동의 흐름을 호스팅에서 점검한다.
 
